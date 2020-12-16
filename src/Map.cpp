@@ -3,14 +3,14 @@
 using namespace MertcanOzdemir;
 void CustomMap::SetSize(const int w, const int h)
 {
-    mapData.clear();
+    borders.clear();
     mapHeight = h;    //Set map height and width
     mapWidth = w;
 }
 void CustomMap::SetBorder(const int x, const int y)
 {
     //Set an coordinate to -1, -1 represents border
-    mapData[y * mapWidth + x] = true;
+    borders[y * mapWidth + x] = true;
 }
 void CustomMap::GetSize(int &width, int &height)
 {
@@ -21,16 +21,16 @@ void CustomMap::GetSize(int &width, int &height)
 void CustomMap::ClearBorder(const int x, const int y)
 {
     //Set an coordinate to 0, 0 means zone note determined
-    mapData[y * mapWidth + x] = false;
+    borders[y * mapWidth + x] = false;
 }
 
 CustomMap::~CustomMap()
 {
     //Delete allocated data so we won't create memory leak
-    mapData.clear();
+    borders.clear();
 }
 bool CustomMap::IsBorder(const int x, const int y){
-  return mapData[y * mapWidth + x];
+  return borders[y * mapWidth + x];
 
 }
 void CustomMap::Show()

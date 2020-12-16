@@ -44,7 +44,9 @@ int CustomZoneCounter::Solve()
     }
     return ZoneCount; // return the zone count
 };
-CustomZoneCounter::~CustomZoneCounter() {}
+CustomZoneCounter::~CustomZoneCounter() {
+    delete[] mapData;
+}
 
 int *CustomZoneCounter::getZoneAt(const int x, const int y,const int& mapWidth)
 {

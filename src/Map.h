@@ -7,7 +7,7 @@
   class CustomMap : public MapInterface
   {
   private:
-     std::map<int,bool> mapData;    
+     std::map<int,bool> borders;    
      int mapHeight, mapWidth;
   public:
     ~CustomMap();
