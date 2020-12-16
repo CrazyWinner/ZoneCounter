@@ -1,36 +1,26 @@
+#pragma once
 #include "Interfaces.h"
 
 namespace MertcanOzdemir
 {
 
-  class CustomMap : public MapInterface
-  {
-  public:
-    int *mapData = 0;
-    int mapHeight, mapWidth;
-    ~CustomMap();
-    void SetSize(const int w, const int h);
-    void GetSize(int &width, int &height);
-    void SetBorder(const int x, const int y);
-    void ClearBorder(const int x, const int y);
-    bool IsBorder(const int x, const int y);
-    int *getZoneAt(const int x, const int y);
-    bool isValidCoordinate(const int x, const int y);
-    void Show();
-  };
+
   class CustomZoneCounter : public ZoneCounterInterface
   {
   private:
-    CustomMap *mapToSolve;
+    MapInterface *mapToSolve;
     int ZoneCount = 0;
-
+    int* mapData = 0;
   public:
+    bool isValidCoordinate(const int x,const int y,const int& mapWidth,const int& mapHeight);
+    int *getZoneAt(const int x, const int y,const int& mapWidth);
     ~CustomZoneCounter();
     void Init(MapInterface *map);
     int Solve();
+    void ShowSolved();
     bool isThereADirectPath(int x, int y, int j, int i);
-    int CheckInterference(int width, int height);
-    int CombineZones(int zone1, int zone2);
+    int CheckInterference(int x, int y,const int& mapWidth,const int& mapHeight);
+    int CombineZones(int zone1, int zone2,const int& mapWidth, const int& mapHeight) ;
   };
   ZoneCounterInterface *getZoneCounter();
 
